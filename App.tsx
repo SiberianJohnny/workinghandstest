@@ -1,13 +1,15 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import RootNavigator from './src/navigation/RootNavigation';
 
 function App() {
   return (
-    <SafeAreaProvider>
-      <View style={styles.container}>
-        <Text>App</Text>
-      </View>
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <SafeAreaProvider style={styles.container}>
+        <RootNavigator />
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 }
 
