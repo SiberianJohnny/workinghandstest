@@ -3,6 +3,8 @@ import { PermissionsAndroid, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RootNavigator from './src/navigation/RootNavigation';
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 function App() {
   const requestGeolocationPermission = async () => {
@@ -28,11 +30,13 @@ function App() {
   }, []);
 
   return (
-    <NavigationContainer>
-      <SafeAreaProvider style={styles.container}>
-        <RootNavigator />
-      </SafeAreaProvider>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <SafeAreaProvider style={styles.container}>
+          <RootNavigator />
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

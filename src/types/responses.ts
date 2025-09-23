@@ -1,9 +1,9 @@
-export interface IGetOrders {
-  data: IOrder[];
+export interface IGetShifts {
+  data: IShift[];
   status: number;
 }
 
-export interface IOrder {
+export interface IShift {
   id: string;
   logo: string;
   coordinates: ICoordinates;
@@ -33,4 +33,9 @@ export interface IWorkType {
   nameGt5: string;
   nameLt5: string;
   nameOne: string;
+}
+
+export interface IGetShiftsParams {
+  latitude: string;
+  longitude: string;
 }
