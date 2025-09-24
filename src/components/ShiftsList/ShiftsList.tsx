@@ -5,18 +5,33 @@ import {
   ListRenderItem,
   StyleSheet,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import { IGetShifts, IShift } from '../../types/responses';
+import { useNavigation } from '@react-navigation/native';
+import {
+  IRootNavigationProps,
+  RootNavigationParamsList,
+} from '../../types/navigation';
 
 interface IProps {
   listData: IGetShifts | undefined;
 }
 
 const ShiftsList = ({ listData }: IProps) => {
+  const navigation = useNavigation<IRootNavigationProps>();
+
+  const navigateToScreen = (shiftData: IShift) => {
+    navigation.navigate('Shift', { shift: shiftData });
+  };
+
   const renderItem: ListRenderItem<IShift> = ({ item }) => {
     return (
-      <View style={styles.shiftItem}>
+      <TouchableOpacity
+        style={styles.shiftItem}
+        onPress={() => navigateToScreen(item)}
+      >
         <View style={styles.shiftItemInfo}>
           <Text style={styles.shiftItemTitle}>{item.companyName}</Text>
           <Image
@@ -29,7 +44,7 @@ const ShiftsList = ({ listData }: IProps) => {
           <Text>Сейчас чел.: {item.currentWorkers}</Text>
           <Text>Стоимость: {item.priceWorker}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 
